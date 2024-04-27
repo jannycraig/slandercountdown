@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saku's Slander Countdown</title>
+<style>
+  body {
+    background-image: url("https://cdn.discordapp.com/attachments/1154255190921334784/1191157661350232084/something_slanderous.png?ex=662e2fc5&is=662cde45&hm=10334ac614874d1dcd379a298da808e0ab1ac41414cca40888a62dc751d85e3d");
+    background-size: cover;
+    background-position: center;
+    color: #80cfff; /* Lighter blue text color */
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+
+  .countdown-container {
+    text-align: center;
+  }
+
+  .countdown-box {
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black container background color */
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 2px solid transparent;
+  }
+
+  .countdown-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 128, 255, 0.5);
+    border-color: #80cfff; /* Lighter blue border color on hover */
+  }
+
+  .countdown-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .countdown-timer {
+    font-size: 36px;
+  }
+
+  /* Media query for responsiveness */
+  @media (max-width: 600px) {
+    .countdown-box {
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="countdown-container">
+  <div class="countdown-box" id="augustCountdown">
+    <div class="countdown-title">Saku's Slander 9 - Shitty Moments Edition</div>
+    <div class="countdown-timer"></div>
+  </div>
+
+  <div class="countdown-box" id="januaryCountdown">
+    <div class="countdown-title">Slanderfest</div>
+    <div class="countdown-timer"></div>
+  </div>
+</div>
+
+<script>
+function countdown(endDate, elementId) {
+  const countDownDate = new Date(endDate).getTime();
+
+  const x = setInterval(function() {
+    const now = new Date().getTime();
+    const distance = countDownDate - now;
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    const timerText = days + "d " + hours + "h " + minutes + "m " + seconds + "s";
+    const timerElement = document.getElementById(elementId).getElementsByClassName("countdown-timer")[0];
+    timerElement.textContent = timerText;
+
+    if (distance < 0) {
+      clearInterval(x);
+      timerElement.textContent = "Out Now";
+    }
+  }, 1000);
+}
+
+countdown('Aug 4, 2024 00:00:00', 'augustCountdown');
+countdown('Jan 1, 2025 00:00:00', 'januaryCountdown');
+</script>
+
+</body>
+</html>
